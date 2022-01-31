@@ -16,5 +16,5 @@ spec:
             command:
             - /bin/sh
             - -c
-            - kubectl get pods --all -n dogfooding
+            - kubectl get pods -n dogfooding
           restartPolicy: OnFailure
