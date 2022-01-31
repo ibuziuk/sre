@@ -4,7 +4,7 @@ kind: CronJob
 metadata:
   name: pod-terminator
 spec:
-  schedule: "* * * * *"
+  schedule: "5 4 * * *" # “At 04:05.” https://crontab.guru/every-24-hours 
   jobTemplate:
     spec:
       template:
@@ -16,5 +16,5 @@ spec:
             command:
             - /bin/sh
             - -c
-            - kubectl get pods -n dogfooding
+            - kubectl delete pods -l app=che -n dogfooding
           restartPolicy: OnFailure
