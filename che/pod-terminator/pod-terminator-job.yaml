@@ -1,0 +1,20 @@
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: pod-terminator
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: pod-terminator
+          containers:
+          - name: pod-terminator
+            image: quay.io/devfile/base-developer-image:ubi8-latest
+            command:
+            - /bin/sh
+            - -c
+            - oc get pods --all -n dogfooding
+          restartPolicy: OnFailure
