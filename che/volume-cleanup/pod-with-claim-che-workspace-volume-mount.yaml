@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: workspace-volume-info
+spec:
+    containers:
+    - name: workspace-volume-info
+      image: registry.access.redhat.com/rhel7
+      command: ["tail"]
+      args: ["-f", "/dev/null"]
+      volumeMounts:
+      - mountPath: /workspaces
+        name: workspaces
+    volumes:
+    - name: workspaces
+      persistentVolumeClaim:
+        claimName: claim-che-workspace
