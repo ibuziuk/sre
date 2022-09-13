@@ -17,7 +17,7 @@ spec:
             - /bin/sh
             - -c
             - |
-              kubectl delete pods -n dogfooding -l 'app=che,component!=che'
+              kubectl delete pods -n dogfooding -l 'app=che,component!=che' --wait=false
               kubectl rollout status -n dogfooding deploy/che-gateway
               kubectl rollout status -n dogfooding deploy/che-dashboard
               kubectl rollout status -n dogfooding deploy/postgres
